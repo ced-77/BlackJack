@@ -93,9 +93,10 @@ console.log(donne);
         var affiche = '<p id="affichage_perdu_gagne" >'+gagnant+' qui Gagne<p>';
         $("#la_banque").append(affiche);
         // attente pour affichage du message
+        //alert();
            
         // recharger la page du debut (script)
-        $('#la_page').load('nouveauJeu.html');
+        setTimeout( "$('#la_page').load('nouveauJeu.html')", 2000 );
 
     }
 
@@ -212,10 +213,63 @@ var main = main_joueur;
 
                 if (main_joueur > 21 ){
                     score_total_banque = score_total_banque + 1 ;
+                    $('#montant_main_banque').html(main_banque);
                     // inserer un message pour dire que la banque gagne
                     QuiGagne('La Banque');   
                 } else {
                     // faire si main_banque < main_joueur et main_banque < 21
+                    
+                    while ( main_banque < main_joueur && main_banque < 21 ) {
+                        // prend carte
+                        // inserer la carte au banquier
+                            nomCarte = TirageDonne();
+                            // recupere la valeur de la carte
+                            valeur_de_carte = ValeurCarte(nomCarte);
+                            // controle si c'est un As
+                            valeur_de_carte = ControleAsBanque(valeur_de_carte, main_banque);
+                            // calculer la main du banquier
+                            main_banque = main_banque + valeur_de_carte;
+                            // afficher la carte à l'écran
+                            carte_banquier = '<img src="" alt="'+nomCarte+'" />';
+                            $("#la_banque_les_cartes").append(carte_banquier);
+                            // affichage de la main de la banque
+                            $('#montant_main_banque').html(main_banque);
+
+                        // fin du while
+                        }
+
+
+                            // controle des mains 
+                            console.log("main du banquier : "+main_banque);
+                            console.log("main du joueur : "+main_joueur);
+
+
+
+                        // controler si main_banque > main_joueur et main_banque < 21
+                         if ( main_banque > main_joueur && main_banque < 21 ){
+                            score_total_banque = score_total_banque + 1 ;
+                            $('#montant_main_banque').html(main_banque);
+                            console.log("la banque gagne");
+                            QuiGagne("La Banque");
+
+                         } else {
+                            if ( main_banque < main_joueur || main_banque > 21 ){
+                                score_total_joueur = score_total_joueur +1;
+                                $('#montant_main_banque').html(main_banque);
+                                console.log("le joueur gagne");
+                                QuiGagne("Le joueur");
+                            } else {
+                                // ici main_banque = main_joueur
+                                $('#montant_main_banque').html(main_banque);
+                                console.log("personne gagne");
+                                QuiGagne("Personne");
+                            }
+                            
+                         }
+                        
+
+                    
+                 // Fin du else si la main du joueur est < 21   
                 }
 
 
