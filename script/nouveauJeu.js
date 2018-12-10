@@ -13,7 +13,7 @@ $(document).ready( function(){
                             score_total_banque+'</span></p>';
 
 
-        $('#scores_totaux').html(scores_totaux);
+        $('#scores_totaux').append(scores_totaux);
     }
 
 

@@ -69,6 +69,36 @@ console.log(donne);
         return valeur;
     }
 
+/*
+    Création de la fonction du controle de l'As 
+    si c'est la banque qui tire
+ */
+    function ControleAsBanque (valeur, main){
+        if (valeur == 1){
+            if (main+valeur < 21){
+                valeur = 11;
+            }else { valeur =1 };
+        }
+        return valeur;
+    }
+
+
+/*
+    Création de la fonction qui gagne pour afficher le nom du gagnant
+    et retour à la page de démarage du jeu pour nouveau jeu
+ */
+
+    function QuiGagne (nom){
+        var gagnant = nom;
+        var affiche = '<p id="affichage_perdu_gagne" >'+gagnant+' qui Gagne<p>';
+        $("#la_banque").append(affiche);
+        // attente pour affichage du message
+           
+        // recharger la page du debut (script)
+        $('#la_page').load('nouveauJeu.html');
+
+    }
+
 
 
 // affichage des scores totaux
@@ -115,7 +145,7 @@ for (var i=0 ; i < 2 ; i++) {
         // recupere la valeur de la carte
         valeur_de_carte = ValeurCarte(nomCarte);
         // controle si c'est un As
-        valeur_de_carte = ControleAs(valeur_de_carte);
+        valeur_de_carte = ControleAsBanque(valeur_de_carte, main_banque);
         // calculer la main du banquier
         main_banque = main_banque + valeur_de_carte;
         // afficher la carte à l'écran
@@ -183,11 +213,7 @@ var main = main_joueur;
                 if (main_joueur > 21 ){
                     score_total_banque = score_total_banque + 1 ;
                     // inserer un message pour dire que la banque gagne
-                        var affiche = '<p id="affichage_perdu_gagne" >La Banque Gagne<p>';
-                    $("#la_banque").append(affiche);
-                    // recharger la page du debut (script)
-                    $('#la_page').load('nouveaujeu.html');
-
+                    QuiGagne('La Banque');   
                 } else {
                     // faire si main_banque < main_joueur et main_banque < 21
                 }
