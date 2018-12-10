@@ -74,10 +74,11 @@ console.log(donne);
     si c'est la banque qui tire
  */
     function ControleAsBanque (valeur, main){
+
         if (valeur == 1){
-            if (main+valeur < 21){
+            if ( ( main+11 ) <= 21){
                 valeur = 11;
-            }else { valeur =1 };
+            } else { valeur = 1; }
         }
         return valeur;
     }
@@ -106,8 +107,7 @@ console.log(donne);
     $('#montant_score_banque').html(score_total_banque);
     $('#montant_score_joueur').html(score_total_joueur);
 
-
-
+    
 /*
     Creation de la premiere donne joueur et banque
 */
@@ -132,8 +132,8 @@ for (var i=0 ; i < 2 ; i++) {
             // calculer la main du joueur  
              main_joueur = main_joueur + valeur_de_carte;
 
-            console.log("valeur de la carte "+nomCarte+"est de "+valeur_de_carte);
-            console.log("le total de la main est de : "+main_joueur);
+            console.log("valeur de la carte joueur "+nomCarte+"est de "+valeur_de_carte);
+            console.log("le total de la main joueur est de : "+main_joueur);
         // afficher la carte à l'écran
         carte_joueur = '<img scr="img/Fond_carte.jpg" alt="'+nomCarte+'" />';
     
@@ -149,6 +149,10 @@ for (var i=0 ; i < 2 ; i++) {
         valeur_de_carte = ControleAsBanque(valeur_de_carte, main_banque);
         // calculer la main du banquier
         main_banque = main_banque + valeur_de_carte;
+
+        console.log("valeur carte banque : "+nomCarte+" est de "+valeur_de_carte);
+
+
         // afficher la carte à l'écran
         carte_banquier = '<img src="img/Fond_carte.jpg" alt="'+nomCarte+'" />';
         $("#la_banque_les_cartes").append(carte_banquier);
@@ -171,8 +175,7 @@ var main = main_joueur;
     $("#bouton_donne").on('click', function(event){
         event.preventDefault;
         choix = $(this).attr('choix');
-        console.log(choix);
-        
+                
             // je prend une carte
             var nomCarte = TirageDonne();
             var valeur_carte = ValeurCarte(nomCarte);            
@@ -222,16 +225,24 @@ var main = main_joueur;
                 } else {
                     // faire si main_banque < main_joueur et main_banque < 21
                     
-                    while ( main_banque < main_joueur && main_banque < 21 ) {
+                    while ( main_banque <= main_joueur && main_banque < 21 ) {
                         // prend carte
                         // inserer la carte au banquier
                             nomCarte = TirageDonne();
                             // recupere la valeur de la carte
                             valeur_de_carte = ValeurCarte(nomCarte);
                             // controle si c'est un As
+                             
+                            console.log("valeur avant controle as "+valeur_de_carte);
+                            console.log("main avant controle as "+main_banque); 
+                             
+                            
                             valeur_de_carte = ControleAsBanque(valeur_de_carte, main_banque);
                             // calculer la main du banquier
                             main_banque = main_banque + valeur_de_carte;
+
+                            console.log("valeur carte banque : "+nomCarte+" est de "+valeur_de_carte);
+
                             // afficher la carte à l'écran
                             carte_banquier = '<img src="" alt="'+nomCarte+'" />';
                             $("#la_banque_les_cartes").append(carte_banquier);
@@ -249,7 +260,7 @@ var main = main_joueur;
 
 
                         // controler si main_banque > main_joueur et main_banque < 21
-                         if ( main_banque > main_joueur && main_banque < 21 ){
+                         if ( main_banque > main_joueur && main_banque <= 21 ){
                             score_total_banque = score_total_banque + 1 ;
                             $('#montant_main_banque').html(main_banque);
                             console.log("la banque gagne");

@@ -73,7 +73,7 @@ $(document).ready( function() {
         /*
             essai d'utilisation d'une foction dans un autre script
         */
-            function direBonjours () {
+            direBonjours = function () {
                 var bonjours = "Hello Word...";
                 return bonjours;
             };
