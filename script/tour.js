@@ -201,11 +201,14 @@ var main = main_joueur;
     $('#bouton_passe').on('click', function(event){
 
         event.preventDefault;
-        saisie = "passe";
+        
             console.log("je suis dans le passe ...");
             console.log("la variable main est de :"+main);
+
+            // suppression des bouton passe et donne
             $('#bouton_donne').remove();
-            // fin du if sur le choix = passe
+            $(this).remove();
+           
 
             /*
                 Tour de la banque
