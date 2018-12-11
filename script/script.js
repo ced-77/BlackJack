@@ -28,83 +28,10 @@ $(document).ready( function() {
                 if (typeof compteur_donne === "undefined" ){
                     compteur_donne = 0;
                 }
-
-    /*
-        Initialisation de la fonction de la donne
-    */
-        
-
-        function nouvelleDonne ( original){
-            var i;
-            var Num;
-            var Nbr = original.length;
-            var nouvelleDonne = new Array();
-            //-- Copie le contenu
-            nouvelleDonne = nouvelleDonne.concat(original);
-            //-- Lance la boucle
-            while( Nbr> 0){
-              //-- Recup nombre aleatoire
-              Num = Math.floor(Math.random() * Nbr);
-              //-- 1 de moins a traiter
-              Nbr--;
-              //-- Stock l'element tire
-              szTmp = nouvelleDonne[Num];
-              //-- Decalage les valeur du tableau
-              for( i= Num; i < Nbr; i++)
-                nouvelleDonne[i] = nouvelleDonne[i+1]
-              //-- Stock l'element tire en fin
-              nouvelleDonne[ Nbr] = szTmp;
-            }
-            //-- On peut remettre dans l'ordre du tirage
-            nouvelleDonne.reverse();
-            //-- Retourne resultat
-            return( nouvelleDonne);
-          }
-
-
-
-
-        // essai de la fonction pour la nouvelle donne
-            // verification de l'existance de la variable
-            if ( typeof donne === "undefined" ){
-                donne = nouvelleDonne(tableau_original);
-            } 
-
-        /*
-            essai d'utilisation d'une foction dans un autre script
-        */
-            direBonjours = function () {
-                var bonjours = "Hello Word...";
-                return bonjours;
-            };
-
-            var salut;
-            salut = direBonjours();
-            console.log(salut);
-
-            console.log("le tableau de carte du script ");
-            console.log(tableau_original);
-
-
-
-
-
-
-
-    /*
-        affichage de la page d'entrée
-    */
-
+     
+  
+    // affichage de la page d'entrée
     $("#la_page").load("nouveauJeu.html");
 
-
-
-   
-
-
-
-
-
-
-
+// fin du script du document
 });

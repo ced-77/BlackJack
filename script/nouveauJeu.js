@@ -11,12 +11,8 @@ $(document).ready( function(){
                             score_total_joueur+'</span></p>'+
                             '<p>Score total banque : <span>'+
                             score_total_banque+'</span></p>';
-
-
         $('#scores_totaux').append(scores_totaux);
     }
-
-
 
 /*
 
@@ -39,6 +35,5 @@ $(document).ready( function(){
     //fin du click sur le bouton non
     });
 
-
-
+// fin du script du document
 });

@@ -2,8 +2,7 @@ $(document).ready( function() {
 
 console.log("tableau du tour : ");
 console.log(tableau_original);
-console.log("la donne : ");
-console.log(donne);
+
 
 /*
     initialisation des variables 
@@ -20,11 +19,62 @@ console.log(donne);
     }
 
 /*
+        Initialisation de la fonction de la donne
+*/
+    
+    function nouvelleDonne ( original){
+        var i;
+        var Num;
+        var Nbr = original.length;
+        var nouvelleDonne = new Array();
+        //-- Copie le contenu
+        nouvelleDonne = nouvelleDonne.concat(original);
+        //-- Lance la boucle
+        while( Nbr> 0){
+            //-- Recup nombre aleatoire
+            Num = Math.floor(Math.random() * Nbr);
+            //-- 1 de moins a traiter
+            Nbr--;
+            //-- Stock l'element tire
+            szTmp = nouvelleDonne[Num];
+            //-- Decalage les valeur du tableau
+            for( i= Num; i < Nbr; i++)
+                nouvelleDonne[i] = nouvelleDonne[i+1]
+            //-- Stock l'element tire en fin
+            nouvelleDonne[ Nbr] = szTmp;
+        }
+        //-- On peut remettre dans l'ordre du tirage
+        nouvelleDonne.reverse();
+        //-- Retourne resultat
+        return( nouvelleDonne);
+    } 
+
+// verification de l'existance de la variable donne
+// si elle n'existe pas on crée une nouvelle donne
+    if ( typeof donne === "undefined" ){
+        donne = nouvelleDonne(tableau_original);
+    } 
+
+// affichage de la donne pour controle
+console.log("la donne : ");
+console.log(donne);
+
+
+
+/*
     creation de la fonction de tirage de la donne
 */
 
     function TirageDonne (){
-        var carte;
+        let carte;
+
+        // controle si la donne n'est pas vide si c'est le cas
+        // on crée une nouvelle donne et on remet le compteur à zéro
+        if (compteur_donne >= 52 ){
+            donne = nouvelleDonne(tableau_original);
+            compteur_donne = 0;
+        }
+        // on tire une carte
         carte = donne[compteur_donne];
         compteur_donne = compteur_donne + 1;
         return carte;
@@ -36,11 +86,11 @@ console.log(donne);
 */
     function ValeurCarte (nomCarte) {
         // recupération de l'attribut
-        var carte = nomCarte;
+        let carte = nomCarte;
         // controle si c'est une figure -> attribuer une valeur de 10
         // sinon prendre la valeur
             // recuperer la premiere lettre pour controler
-            var premiere_lettre = carte.substring(0, 1) ;
+            let premiere_lettre = carte.substring(0, 1) ;
 
             if (premiere_lettre == "R" || premiere_lettre == "D" || premiere_lettre =="V" ){
                // attribution de la valeur 10
@@ -60,7 +110,7 @@ console.log(donne);
 */
     function ControleAs (valeur){
         if (valeur == 1){
-            var saisie = confirm("As tiré, Voulez vous la valeur 11 ?");
+            let saisie = confirm("As tiré, Voulez vous la valeur 11 ?");
             if (saisie == true) {
                 valeur = 11;
             } else { valeur = 1; }
@@ -90,18 +140,15 @@ console.log(donne);
  */
 
     function QuiGagne (nom){
-        var gagnant = nom;
-        var affiche = '<p id="affichage_perdu_gagne" >'+gagnant+' qui Gagne<p>';
+        let gagnant = nom;
+        let affiche = '<p id="affichage_perdu_gagne" >'+gagnant+' qui Gagne<p>';
         $("#la_banque").append(affiche);
         // attente pour affichage du message
         //alert();
            
         // recharger la page du debut (script)
         setTimeout( "$('#la_page').load('nouveauJeu.html')", 2000 );
-
     }
-
-
 
 // affichage des scores totaux
     $('#montant_score_banque').html(score_total_banque);
@@ -131,12 +178,8 @@ for (var i=0 ; i < 2 ; i++) {
              valeur_de_carte = ControleAs(valeur_de_carte);
             // calculer la main du joueur  
              main_joueur = main_joueur + valeur_de_carte;
-
-            console.log("valeur de la carte joueur "+nomCarte+"est de "+valeur_de_carte);
-            console.log("le total de la main joueur est de : "+main_joueur);
         // afficher la carte à l'écran
-        carte_joueur = '<img scr="img/Fond_carte.jpg" alt="'+nomCarte+'" />';
-    
+        carte_joueur = '<img src="img/'+nomCarte+'.jpg" alt="'+nomCarte+'" />';
         $("#le_joueur_les_cartes").append(carte_joueur);
         // affichage de la main du joueur
         $('#montant_main_joueur').html(main_joueur);
@@ -149,10 +192,6 @@ for (var i=0 ; i < 2 ; i++) {
         valeur_de_carte = ControleAsBanque(valeur_de_carte, main_banque);
         // calculer la main du banquier
         main_banque = main_banque + valeur_de_carte;
-
-        console.log("valeur carte banque : "+nomCarte+" est de "+valeur_de_carte);
-
-
         // afficher la carte à l'écran
         carte_banquier = '<img src="img/Fond_carte.jpg" alt="'+nomCarte+'" />';
         $("#la_banque_les_cartes").append(carte_banquier);
@@ -168,9 +207,6 @@ var bouton_donne = '<button id="bouton_donne" class="bouton_choix_tour" choix="d
 $("#la_donne").append(bouton_passe+bouton_donne);
 
 // Tour du joueur
-// initialisation de la variable saisie et main
-var saisie ="";
-var main = main_joueur;
    
     $("#bouton_donne").on('click', function(event){
         event.preventDefault;
@@ -180,21 +216,20 @@ var main = main_joueur;
             var nomCarte = TirageDonne();
             var valeur_carte = ValeurCarte(nomCarte);            
             valeur_carte = ControleAs(valeur_carte);            
-            main = main + valeur_carte;
-            main_joueur = main;
+            main_joueur = main_joueur + valeur_carte;
+            
             
 
-            var carte_joueur = '<img scr="img/Fond_carte.jpg" alt="'+nomCarte+'" />';
+            var carte_joueur = '<img src="img/'+nomCarte+'.jpg" alt="'+nomCarte+'" />';
     
             $("#le_joueur_les_cartes").append(carte_joueur);
             // affichage de la main du joueur
             $('#montant_main_joueur').html(main_joueur);
 
-            if (main > 21){
+            if (main_joueur > 21){
                 // si > 21 alors je supprime la bouton de la donne pour 
-                // obliger le joeur à passer
+                // obliger le joueur à passer
                 $(this).remove();
-                saisie ="passe";
                 // fin du if sur > 21
                 }
             
@@ -204,10 +239,6 @@ var main = main_joueur;
     $('#bouton_passe').on('click', function(event){
 
         event.preventDefault;
-        
-            console.log("je suis dans le passe ...");
-            console.log("la variable main est de :"+main);
-
             // suppression des bouton passe et donne
             $('#bouton_donne').remove();
             $(this).remove();
@@ -232,19 +263,11 @@ var main = main_joueur;
                             // recupere la valeur de la carte
                             valeur_de_carte = ValeurCarte(nomCarte);
                             // controle si c'est un As
-                             
-                            console.log("valeur avant controle as "+valeur_de_carte);
-                            console.log("main avant controle as "+main_banque); 
-                             
-                            
                             valeur_de_carte = ControleAsBanque(valeur_de_carte, main_banque);
                             // calculer la main du banquier
                             main_banque = main_banque + valeur_de_carte;
-
-                            console.log("valeur carte banque : "+nomCarte+" est de "+valeur_de_carte);
-
                             // afficher la carte à l'écran
-                            carte_banquier = '<img src="" alt="'+nomCarte+'" />';
+                            carte_banquier = '<img src="img/'+nomCarte+'.jpg" alt="'+nomCarte+'" />';
                             $("#la_banque_les_cartes").append(carte_banquier);
                             // affichage de la main de la banque
                             $('#montant_main_banque').html(main_banque);
@@ -252,62 +275,29 @@ var main = main_joueur;
                         // fin du while
                         }
 
-
-                            // controle des mains 
-                            console.log("main du banquier : "+main_banque);
-                            console.log("main du joueur : "+main_joueur);
-
-
-
                         // controler si main_banque > main_joueur et main_banque < 21
                          if ( main_banque > main_joueur && main_banque <= 21 ){
                             score_total_banque = score_total_banque + 1 ;
                             $('#montant_main_banque').html(main_banque);
-                            console.log("la banque gagne");
                             QuiGagne("La Banque");
 
                          } else {
                             if ( main_banque < main_joueur || main_banque > 21 ){
                                 score_total_joueur = score_total_joueur +1;
                                 $('#montant_main_banque').html(main_banque);
-                                console.log("le joueur gagne");
                                 QuiGagne("Le joueur");
                             } else {
                                 // ici main_banque = main_joueur
                                 $('#montant_main_banque').html(main_banque);
-                                console.log("personne gagne");
                                 QuiGagne("Personne");
                             }
                             
                          }
-                        
-
-                    
                  // Fin du else si la main du joueur est < 21   
                 }
-
-
             // Fin du tour de la Banque
 
     // fin du click sur passe
     });
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // fin du scrypt
 });
