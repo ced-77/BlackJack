@@ -141,13 +141,27 @@ console.log(donne);
 
     function QuiGagne (nom){
         let gagnant = nom;
+
+        // affichage des cartes cachées de la banque
+            // recupération des valeurs alt des deux cartes
+                let alt_carte_1 ="" ;
+                let alt_carte_2 = "";
+                alt_carte_1 = $("#la_banque_les_cartes img:nth-child(1)").attr("alt");
+                alt_carte_2 = $("#la_banque_les_cartes img:nth-child(2)").attr("alt");
+                
+                let nom_carte_banque_1 = "img/"+alt_carte_1+".jpg";
+                let nom_carte_banque_2 = "img/"+alt_carte_2+".jpg";
+
+            // affichage des cartes cachées de la banque
+                $("#la_banque_les_cartes img:nth-child(1)").attr("src", nom_carte_banque_1);
+                $("#la_banque_les_cartes img:nth-child(2)").attr("src", nom_carte_banque_2);
+
+        // affichage du message qui indique le gagnant
         let affiche = '<p id="affichage_perdu_gagne" >'+gagnant+' qui Gagne<p>';
         $("#la_banque").append(affiche);
-        // attente pour affichage du message
-        //alert();
-           
-        // recharger la page du debut (script)
-        setTimeout( "$('#la_page').load('nouveauJeu.html')", 2000 );
+        
+        // recharger la page du debut avec une attente pour l'affichage du message (script)
+        setTimeout( "$('#la_page').load('nouveauJeu.html')", 2500 );
     }
 
 // affichage des scores totaux
