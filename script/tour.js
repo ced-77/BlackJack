@@ -164,6 +164,8 @@ console.log(donne);
         setTimeout( "$('#la_page').load('nouveauJeu.html')", 2500 );
     }
 
+
+
 // affichage des scores totaux
     $('#montant_score_banque').html(score_total_banque);
     $('#montant_score_joueur').html(score_total_joueur);
@@ -218,7 +220,19 @@ for (var i=0 ; i < 2 ; i++) {
 // ajout d'un bouton pour passer son tour et un bouton pour la donne
 var bouton_passe = '<button id="bouton_passe" class="bouton_choix_tour" choix="passe" >Passer</button>';
 var bouton_donne = '<button id="bouton_donne" class="bouton_choix_tour" choix="donne" >Donne</button>';
-$("#la_donne").append(bouton_passe+bouton_donne);
+var bouton_regle = '<button id="bouton_regle" class="bouton_choix_tour" choix="regle" >Regles du jeu</button>';
+$("#la_donne").append(bouton_passe+bouton_donne+bouton_regle);
+
+// affichage des relges
+$('#bouton_regle').on('click', function(event){
+    event.preventDefault;
+    var section_regle = $('#regles').html();
+  
+    if ( section_regle === "" ){
+        $('#regles').load("regles.html");
+    } else { $('#regles').html(''); }
+// Fin de l'appel des regles
+});
 
 // Tour du joueur
    
@@ -241,9 +255,14 @@ $("#la_donne").append(bouton_passe+bouton_donne);
             $('#montant_main_joueur').html(main_joueur);
 
             if (main_joueur > 21){
-                // si > 21 alors je supprime la bouton de la donne pour 
+                // si > 21 alors je supprime le bouton de la donne pour 
                 // obliger le joueur à passer
+                // on change la couleur du bouton passe
+                $("#bouton_passe").css({"background-color":"yellow","color":"red", "font-weight":"800"});
+                
                 $(this).remove();
+                let mot_bouton = "Fini pour toi : Clique";
+                $('#bouton_passe').html(mot_bouton);
                 // fin du if sur > 21
                 }
             
