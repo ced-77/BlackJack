@@ -1,0 +1,29 @@
+
+
+
+#regle {
+
+    color: white;
+}
+
+/* #regle p {
+    margin-bottom: 2rem;
+} */
+
+#regle section {
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+
+}
+
+#regle h3 {
+    text-align: center;
+    color: #b2fdad;
+}
+
+#regle table {
+    margin: auto;
+    padding: 0.5rem;
+    border: solid #b2fdad;
+    border-radius: 2.5rem;
+}

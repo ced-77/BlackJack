@@ -94,7 +94,7 @@ img {
     margin: auto;
 } */
 
-#les_joueurs, #la_donne {
+#les_joueurs, #la_donne, #regle {
     border: solid .5rem blue;
     border-radius: 2rem;
     margin: 2rem;
@@ -159,5 +159,4 @@ img {
     padding: 2rem;
     left: 16rem;
     top: 12rem;
-
 }

@@ -229,7 +229,7 @@ $('#bouton_regle').on('click', function(event){
     var section_regle = $('#regles').html();
   
     if ( section_regle === "" ){
-        $('#regles').load("regles.html");
+        $('#regles').load("regles_2.html");
     } else { $('#regles').html(''); }
 // Fin de l'appel des regles
 });
