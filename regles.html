@@ -1,54 +1,66 @@
 <h2>Les regles du BlackJack</h2>
 
-
-    <article id="regle" >
-       2 joueurs s'affronteront: La banque et vous
-      
-       La valeur des cartes sont :
-                - 10 pour les figures
-                - La valeur nominal pour les autres cartes, excepté l'as 1 ou 11 au choix
-                pour l'as, à la convenance du joueur, qui peut donc à tout moment de faire
-                ses comptes avec l'une ou l'autre de ces valeurs.
+<link rel="stylesheet" href="css/regles.css" type="text/css"> 
+    <article id=regle>
+        <section>
+        <h3>Les conditions pour jouer</h3>
+            <p>
+                Un sabot de 52 cartes mélangées (représenté par la donne).
             </p>
-             <p>
-                Le banquier distribuera quatre cartes alternativement en commençant par vous puis
-                à lui-même (deux à chaque participant).
-             </p>
+        <h3>Les conditions pour gagner</h3>
             <p>
-                Le but du jeu est d'obtenir le plus grand score sans dépasser 21. 
-            </p>  
+            La valeur total des cartes de la main doit se rapporcher le plus possible de 21 sans les dépasser. 
+            </p>   
+        <h3>Le nombre de joueurs</h3>
             <p>
-                Si, avec les 2 cartes distribuées, le joueur estime n'avoir pas assez de points,
-                il peut demander des cartes supplémentaires.
-            </p>
-            <p>
-                Ces cartes sont déposées à découvert sur la table, alors
-                que les 2 premières restent cach&eacutees. Lorsque que le joueur estime que son jeu
-                est satisfaisant, il le signale et c’est au tour du banquier de reprendre des cartes
-                s'il le désire.
-            </p>  
-            <p>
-                Au cas où le joueur dépasse les 21 points, il doit le signaler et ne
-                plus prendre des cartes. Dans ce cas, le banquier n'a évidemment pas 
-                intérêt à continuer, car il a gagné de toute façon.
-            </p>
-            <p>
-                La partie s'arrête lorsque les deux adversaires estiment avoir un score convenable. On abat alors les cartes et on
-                fait les comptes, afin de savoir qui a gagné.
-            </p>
-            <p>
-                A la fin de chaque partie, on peut
-                décider de s'arrêter ou de poursuivre le jeu. En cas de poursuite, on joue avec les
-                cartes qui restent dans le jeu. 
-            </p>
-            <p>
-                Lorsque le jeu est épuisé, ce qui peut arriver en
-                cours d'une partie, on bat un nouveau jeu de cartes et on continue la partie. 
-            </p>
-            <p>
-                On totalise le nombre de partie gagnées et perdues et le gagnant final est celui qui a
-                remporté le plus grand nombre de parties.
-            </p>    
-
-    
+       1 joueur contre la banque (l'ordinateur).
+            </p> 
+    </section>  
+       <h3>Les points</h3>
+       <table>
+           <thead>
+                <tr>
+                    <th>valeur</th>
+                    <th>points</th>
+                </tr>
+           </thead>
+           <tbody>
+                <tr>
+                    <td>Roi, Dames, Valet</td>
+                    <td>10 points</td>
+                </tr>
+                <tr>
+                    <td>As</td>
+                    <td>1 ou 11 points (au choix)</td>
+                </tr>
+                <tr>
+                    <td>2 ... 10</td>
+                    <td>Sa valeur numérique</td>
+                </tr>
+           </tbody>
+           
+           
+       </table>
+            
+        <h3>Déroulement d'une partie</h3>
+             <ul>
+                    <li>Le joueur et la banque recoivent respectivement deux cartes chacun de façon alternative.
+                        Ses cartes sont face cachées.</li>
+                    <li>
+                        Après avoir reçus sa main, si le joueur estime n'avoir pas assez de points dans sa main, il peut demander une carte supplémentaire en cliquant sur le bouton [Donne].
+                    </li>
+                    <li>
+                        Quand le nombre de points est satisfaisant, le joueur peut donner la main à la banque en cliquant sur le bouton [passer].
+                    </li>
+                    <li>
+                        Si le joueur dépasse 21 points alors il doit le signaler en cliquant sur le bouton [tanpis pour toi, clique] et donne la main à la banque.   
+                    </li>
+                    <li>
+                        A la fin du tour on donne 1 point au vainqueur.
+                    </li>
+                    
+                    <li>
+                        Si les points des deux mains sont identique alors le tour compte null.
+                    </li>
+            </ul>
 </article>

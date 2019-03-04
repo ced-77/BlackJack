@@ -1,29 +1,60 @@
 
 
-
 #regle {
 
     color: white;
+    padding-left:4rem;
+    padding-right:2rem;
+    max-width: 70rem;
+    margin:auto;
 }
 
 /* #regle p {
     margin-bottom: 2rem;
 } */
 
-#regle section {
-    margin-bottom: 2rem;
-    margin-left: 2rem;
 
+#regle section {
+    margin-bottom: 3rem;
+    
+    
 }
 
 #regle h3 {
     text-align: center;
     color: #b2fdad;
+    margin-top: 2rem;
+    margin-bottom: 7px;
 }
 
 #regle table {
     margin: auto;
-    padding: 0.5rem;
-    border: solid #b2fdad;
-    border-radius: 2.5rem;
+    border: 3px solid #b2fdad; 
+    border-radius: 25px;
+    padding: 1rem;
+    width: 48rem;
+    
+}
+
+#regle table thead {
+    color: green;
+    background-color:#b2fdad;
+
+    border: 1rem solid black;
+    border-radius: 25rem;
+}
+
+#regle table tbody {
+
+   
+    /*! background-color:#b2fdad; */
+}
+#regle table tbody td {
+    padding-left: 1rem;
+}
+
+
+#regle li {
+    margin-bottom: 1rem;
+    
 }
